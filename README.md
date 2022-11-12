@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -10,25 +8,123 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 環境構築ステップ
+1. Nodejsのバージョン確認
+```bash
+# 16.0.10
+node -v
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+2. NextJs 13+React 18＋Typescriptの導入
+```bash
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# https://nextjs.org/docs/getting-started
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+yarn create next-app --typescript
+```
 
-## Learn More
+3. ESLintを導入
+```bash
 
-To learn more about Next.js, take a look at the following resources:
+# .eslintrc.json
+{
+  "extends": ["next", "next/core-web-vitals", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "simple-import-sort", "unused-imports"],
+  "rules": {
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": [
+      "warn"
+    ],
+    "@typescript-eslint/no-unused-vars": "off",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
+    "unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": "off"
+  }
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# install dependencies
+yarn add -D typescript @typescript-eslint/parser
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+yarn add -D @typescript-eslint/eslint-plugin
 
-## Deploy on Vercel
+yarn add -D eslint-plugin-simple-import-sort
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+yarn add -D eslint-plugin-unused-imports
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+yarn add --dev eslint-config-prettier
+```
+
+4. tailwindcssを導入
+```bash
+# https://tailwindcss.com/docs/guides/nextjs
+
+yarn add -D tailwindcss postcss autoprefixer
+
+npx tailwindcss init -p
+
+# tailwind.config.js内容変更
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+# styles/globals.css内容変更
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+```
+
+5. lint-stagedを導入
+```bash
+# .lintstagedrc.js
+＃create .lintstagedrc.js file
+const path = require('path')
+
+const buildEslintCommand = (filenames) =>
+  `next lint --fix --file ${filenames
+    .map((f) => path.relative(process.cwd(), f))
+    .join(' --file ')}`
+
+module.exports = {
+  '*.{js,jsx,ts,tsx}': [buildEslintCommand],
+}
+
+# install lint-staged
+yarn add -D lint-staged
+```
+
+# Framework
+## NextJs 13+React 18
+ - https://nextjs.org/docs/getting-started
+
+## Tailwind
+
+## SWR
+ 
+
+## Test
+ - React Testing Library
+
+
+# Code Structure
+
+
+# Please make an app to search GitHub repositories.
+ - Use the following API from GitHub: https://docs.github.com/en/rest/reference/search
+ - Implement a design in CSS. It can be as simple as you want.
+ - Implement throttling to fetch data from the API.
+ - Implement pagination.
+ - Use TypeScript.
+ - Use React.
