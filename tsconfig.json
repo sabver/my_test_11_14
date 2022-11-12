@@ -1,7 +1,32 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "app/components": [
+        "./components/index.ts"
+      ],
+      "app/components/*": [
+        "./components/*"
+      ],
+      "app/types": [
+        "./types/index.ts"
+      ],
+      "app/types/*": [
+        "./types/*"
+      ],
+      "app/services": [
+        "./services/index.ts"
+      ],
+      "app/services/*": [
+        "./services/*"
+      ],
+    },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,6 +40,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

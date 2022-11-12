@@ -112,6 +112,10 @@ yarn add -D lint-staged
 ## Tailwind
 
 ## SWR
+
+## octokit
+
+## cross-env
  
 
 ## Test
