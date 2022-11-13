@@ -13,6 +13,7 @@
 
 export type { Code } from "./code";
 export type { Commit } from "./commit";
+export { SEARCH_TYPE } from "./enum";
 export type { Issue } from "./issue";
 export type { Label } from "./label";
 export type { Repo } from "./repository";

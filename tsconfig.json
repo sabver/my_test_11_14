@@ -20,6 +20,12 @@
       "app/services/*": [
         "./services/*"
       ],
+      "app/hooks": [
+        "./hooks/index.ts"
+      ],
+      "app/hooks/*": [
+        "./hooks/*"
+      ],      
     },
     "target": "es5",
     "lib": [
